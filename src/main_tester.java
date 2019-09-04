@@ -9,5 +9,8 @@ public class main_tester {
         //slutt på oppgave 1
 
 
+        //Test på oppgave 3
+        int[] b = {3,2,4,6,8,1,5,5,5,5};
+        System.out.println("Antall : "+Oblig1.antallUlikeUSortert(a));
     }
 }

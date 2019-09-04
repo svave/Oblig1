@@ -46,15 +46,15 @@ public class Oblig1 {
     //Oppgave 2
     public static int antallUlikeSortert(int[] a){
         int antallForskjellig = 0;
-        if(a){
-            throw new IllegalStateException("");
+        if(!(sortertKontroll(a))){
+            throw new IllegalStateException("The array is not sorted and can thus not be runs");
         } else {
             for(int i = 1; i<a.length; i++){
                 if(i != a[i]){
                     antallForskjellig++;
                 }else if(i == a[i]){
                     antallForskjellig++;
-                }
+                }//else if{ //NOTE: Fikse så at hvis det er 0 elementer så returnerer utkallet 0.}
             }
         }
         return antallForskjellig;
@@ -85,6 +85,20 @@ public class Oblig1 {
 
         return maksverdi;  // posisjonen til største verdi i a[fra:til>
     }
+    public static void fratilKontroll(int tablengde, int fra, int til) {
+        if (fra < 0)                                  // fra er negativ
+            throw new ArrayIndexOutOfBoundsException
+                    ("fra(" + fra + ") er negativ!");
+
+        if (til > tablengde)                          // til er utenfor tabellen
+            throw new ArrayIndexOutOfBoundsException
+                    ("til(" + til + ") > tablengde(" + tablengde + ")");
+
+        if (fra > til)                                // fra er større enn til
+            throw new IllegalArgumentException
+                    ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
+    }
+
     public static int maks(int[] a)
     { // bruker hele tabellen
         return maks(a,0,a.length);     // kaller metoden over
@@ -98,10 +112,35 @@ public class Oblig1 {
                 int max_tall = maks(a, 0, i);
                 if(!(max_tall == i-1)){
                     bytt(a, max_tall, i-1);
+                    return true;
                 }
             }
         }
-
+        return false;
     }
+    //Slutt på oppgave 2
+
+    
+    //Start på oppgave 3
+    public static int antallUlikeUSortert(int[] a){
+        int ulike = 1;
+
+        for(int i = 1; i<a.length; i++){
+            int j =0;
+            for(j = 0; j<i; j++){
+                if(a[i] == a[j]){
+                    break;
+                }
+            }
+            if(i == j){
+                ulike++;
+            }
+        }
+        return ulike;
+    }
+    //Slutt på oppgave 3
+
+    //Oppgave 4
+
 
 }
