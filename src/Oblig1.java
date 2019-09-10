@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class Oblig1 {
@@ -14,7 +12,7 @@ public class Oblig1 {
      * ● Hvor mange blir det i gjennomsnitt?
      *      -I gjennomsnitt er det n-1 sammenligninger.
     * */
-    public static int størst(int[] a){
+    public static int maks(int[] a){
 
         if(a.length == 0){
             throw new NoSuchElementException("Array :"+a+" can not be empty");
@@ -26,7 +24,8 @@ public class Oblig1 {
             for(int j = 1; j<i; j++){
                 if(a[j] > storst_tall){
                     storst_tall = a[i];
-                    bytt(a, storst_tall,i);
+                    bytt(a, storste_indeks,i);
+                    ombyttinger(a);
                 }
             }
         }
@@ -39,6 +38,7 @@ public class Oblig1 {
     }
     public static int ombyttinger(int[] a){
         int antall =0;
+
         return antall;
     }
     //Slutt på oppgave 1
@@ -47,7 +47,7 @@ public class Oblig1 {
     public static int antallUlikeSortert(int[] a){
         int antallForskjellig = 0;
         if(!(sortertKontroll(a))){
-            throw new IllegalStateException("The array is not sorted and can thus not be runs");
+            throw new IllegalStateException("The array is not sorted and can thus not be run");
         } else {
             for(int i = 1; i<a.length; i++){
                 if(i != a[i]){
@@ -99,7 +99,7 @@ public class Oblig1 {
                     ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
 
-    public static int maks(int[] a)
+    public static int størst(int[] a)
     { // bruker hele tabellen
         return maks(a,0,a.length);     // kaller metoden over
     }
@@ -120,7 +120,7 @@ public class Oblig1 {
     }
     //Slutt på oppgave 2
 
-    
+
     //Start på oppgave 3
     public static int antallUlikeUSortert(int[] a){
         int ulike = 1;
