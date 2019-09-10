@@ -141,6 +141,8 @@ public class Oblig1 {
     //Slutt på oppgave 3
 
     //Oppgave 4
+    public static void delsortering(int[] a){
 
+    }
 
 }
