@@ -140,8 +140,10 @@ public class Oblig1 {
     }
     //Slutt på oppgave 3
 
-    //Oppgave 4
+    //Oppgave4
+    public static void delsortering(int[] a){
 
+ oppgave_3
     //Oppgave 7 i plenum
     public static String flett(String s, String t){
         //Finner lengden på korteste stringen
@@ -158,6 +160,7 @@ public class Oblig1 {
     public static String flett(String[] s){
         String test = "";
         return test;
+ master
     }
 
 }
