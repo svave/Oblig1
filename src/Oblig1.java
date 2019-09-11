@@ -25,7 +25,7 @@ public class Oblig1 {
                 if(a[j] > storst_tall){
                     storst_tall = a[i];
                     bytt(a, storste_indeks,i);
-                    ombyttinger(a);
+
                 }
             }
         }
@@ -122,7 +122,7 @@ public class Oblig1 {
 
 
     //Start på oppgave 3
-    public static int antallUlikeUSortert(int[] a){
+    public static int antallUlikeUsortert(int[] a){
         int ulike = 1;
 
         for(int i = 1; i<a.length; i++){
@@ -143,6 +143,24 @@ public class Oblig1 {
     //Oppgave4
     public static void delsortering(int[] a){
 
+ oppgave_3
+    //Oppgave 7 i plenum
+    public static String flett(String s, String t){
+        //Finner lengden på korteste stringen
+        int lengde = Math.min(s.length(), t.length());
+
+        StringBuilder sb = new StringBuilder();
+        for(int i =0; i< lengde; i++){
+            sb.append(s.charAt(i)).append(t.charAt(i));
+        }
+        sb.append(s.substring(lengde)).append(t.substring(lengde));
+        return sb.toString();
+    }
+
+    public static String flett(String[] s){
+        String test = "";
+        return test;
+ master
     }
 
 }
