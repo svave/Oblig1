@@ -15,5 +15,18 @@ public class main_tester {
         //Test på oppgave 3
         int[] b = {3,2,4,6,8,1,5,5,5,5};
         //System.out.println("Antall : "+Oblig1.antallUlikeUSortert(a));
+
+        //Test på Oppgave 8
+        int[] x = {6,10,16,11,7,12,3,9,8,5};
+        int[] index = Oblig1.indekssortering(x);
+        System.out.println("Array x : " + Arrays.toString(x));
+        System.out.println("Array med indekssortering : " + Arrays.toString(index));
+        for(int i = 0; i < x.length; i++){
+            System.out.println(x[index[i]] + " ");
+        }
+
+        //Oppgave 9
+
+        //System.out.println("Tredje minst array : "+ Arrays.toString(Oblig1.tredjeMinst(x)));
     }
 }

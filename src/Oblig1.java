@@ -181,7 +181,37 @@ public class Oblig1 {
         }
         return karakter;
     }
+    //Oppgave 8
+    //funker nesten. sliter med tall med 2 siffre
+    public static int[] indekssortering(int[] x) {
 
+        //her opprettes hjelpelister
+        int[] index_pos = new int[x.length];
+        int[] y = x.clone();
+
+        if(y.length < 0){
+            System.out.println("Arrayet er tomt!");
+        }
+
+        //her loopes det gjennom array y for å samle inn indexverdiene til elementene
+        for (int i = 0; i < y.length; i++) {
+            int min_value = y[i];
+            int index = 0;
+
+            //i denne loopen blir den innhentede indexverdien lagt inn i indexsortering arrayet
+            for (int j = 0; j < index_pos.length; j++) {
+                if (y[j] < min_value) {
+                    min_value = y[j];
+                    index = j;
+                }
+            }
+            index_pos[i] = index;
+            y[index] = Integer.MAX_VALUE;
+        }
+        return index_pos;
+    }
+
+    
 
     //Oppgave 10 felles
     public static boolean inneholdt(String a, String b){
