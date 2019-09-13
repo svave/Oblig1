@@ -27,6 +27,6 @@ public class main_tester {
 
         //Oppgave 9
 
-        //System.out.println("Tredje minst array : "+ Arrays.toString(Oblig1.tredjeMinst(x)));
+        System.out.println("Array med de tre minste indexene : " + Arrays.toString(Oblig1.tredjeMinst(x)));
     }
 }

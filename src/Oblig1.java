@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class Oblig1 {
@@ -190,7 +191,7 @@ public class Oblig1 {
         int[] y = x.clone();
 
         if(y.length < 0){
-            System.out.println("Arrayet er tomt!");
+            new java.util.NoSuchElementException("Arrayet er tomt");
         }
 
         //her loopes det gjennom array y for å samle inn indexverdiene til elementene
@@ -210,8 +211,42 @@ public class Oblig1 {
         }
         return index_pos;
     }
+    //Oppgave 9
 
-    
+    public static int[] tredjeMinst(int[] x){
+        int[] tredjeMinst = new int[3];
+        for(int k = 0; k < x.length; k++) {
+            //variabler for å lagre posisjonene
+            int minst_pos = 0;
+            int nMinst_pos = 1;
+            int tMinst_pos = 2;
+
+            //variabler for å lagre elementenes verdier
+            int minst_verdi = x[0];
+            int nMinst_verdi = x[1];
+            int tMinst_verdi = x[2];
+
+            for (int i = 0; i < tredjeMinst.length; i++) {
+                if (x[i] < minst_verdi) {
+                    minst_verdi = x[i];
+                    minst_pos = i;
+                } else if (x[i] < tMinst_verdi && x[i] > minst_verdi) {
+                    nMinst_verdi = x[i];
+                    nMinst_pos = i;
+                } else if (x[i] < nMinst_verdi && x[i] < minst_verdi) {
+                    tMinst_verdi = x[i];
+                    tMinst_pos = i;
+                }
+            }
+            tredjeMinst[0] = minst_verdi;
+            tredjeMinst[1] = nMinst_verdi;
+            tredjeMinst[2] = tMinst_verdi;
+
+        }
+        return tredjeMinst;
+    }
+
+
 
     //Oppgave 10 felles
     public static boolean inneholdt(String a, String b){
