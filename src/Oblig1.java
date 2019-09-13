@@ -120,7 +120,7 @@ public class Oblig1 {
     }
     //Slutt på oppgave 2
 
-    
+
     //Start på oppgave 3
     public static int antallUlikeUSortert(int[] a){
         int ulike = 1;
@@ -142,5 +142,98 @@ public class Oblig1 {
 
     //Oppgave 4
 
+    //Oppgave 8
+    //funker nesten. sliter med tall med 2 siffre
+    public static int[] indekssortering(int[] x) {
 
-}
+        //her opprettes hjelpelister
+        int[] index_pos = new int[x.length];
+        int[] y = x.clone();
+
+        //her loopes det gjennom array y for å samle inn indexverdiene til elementene
+        for (int i = 0; i < y.length; i++) {
+            int min_value = y[i];
+            int index = 0;
+
+            //i denne loopen blir den innhentede indexverdien lagt inn i indexsortering arrayet
+            for (int j = 0; j < index_pos.length; j++) {
+                if (y[j] < min_value) {
+                    min_value = y[j];
+                    index = j;
+                }
+            }
+            index_pos[i] = index;
+            y[index] = Integer.MAX_VALUE;
+        }
+        return index_pos;
+    }
+    public static boolean nestePermutasjon(int[] a)
+    {
+        int i = a.length - 2;                    // i starter nest bakerst
+        while (i >= 0 && a[i] > a[i + 1]) i--;   // går mot venstre
+        if (i < 0) return false;                 // a = {n, n-1, . . . , 2, 1}
+
+        int j = a.length - 1;                    // j starter bakerst
+        while (a[j] < a[i]) j--;                 // stopper når a[j] > a[i]
+        bytt(a,i,j); snu(a,i + 1);               // bytter og snur
+
+        return true;                             // en ny permutasjon
+    }
+
+    public static void snu(int[] a, int v, int h)  // snur intervallet a[v:h]
+    {
+        while (v < h) bytt(a, v++, h--);
+    }
+
+    public static void snu(int[] a, int v)  // snur fra og med v og ut tabellen
+    {
+        snu(a, v, a.length - 1);
+    }
+
+    public static void snu(int[] a)  // snur hele tabellen
+    {
+        snu(a, 0, a.length - 1);
+    }
+    //Oppgave 9
+    /*
+    public static int[] tredjeMinst(int[] x){
+        int tredje = x.length;
+        if(tredje > 3){
+            new java.util.NoSuchElementException("Arrayet er for lite");
+        }
+
+        //posisjonene til verdiene
+        int minst_pos = 0;
+        int nMinst_pos = 1;
+        int tMinst_pos = 2;
+
+        //bytter om posisjonen hvis x[1] er mindre enn x[0]
+        if(x[1] < x[0]){
+            minst_pos = 1;
+            nMinst_pos = 0;
+        }
+        //bytter om posisjonen hvis x[2] er mindre enn x[0]
+        if(x[2] < x[0]){
+            minst_pos = 1;
+            tMinst_pos = 0;
+        }
+        //bytter om posisjonen hvis x[3] er mindre enn x[1]
+        if(x[2] < x[1]){
+            tMinst_pos = 1;
+            nMinst_pos = 2;
+        }
+
+
+        int minst_verdi = x[minst_pos];
+        int nMinst_verdi = x[nMinst_pos];
+        int tMinst_verdi = x[tMinst_pos];
+
+        for(int i = 0; i < tredje; i++){
+
+        }
+
+        return tredje;
+    }
+    */
+   }
+
