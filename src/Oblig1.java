@@ -12,48 +12,39 @@ public class Oblig1 {
      * ● Hvor mange blir det i gjennomsnitt?
      *      -I gjennomsnitt er det n-1 sammenligninger.
     * */
+    //v.5 working with test!!
     public static int maks(int[] a){
         if(a.length == 0){
             throw new NoSuchElementException("Array :"+a+" can not be empty");
         } else{
-        int storst_tall = a[0];
-        int storste_indeks = 0;
-
-        for(int i = (a.length-1); i>=0; i--){
-            for(int j = 1; j<i; j++){
-                if(a[j] > storst_tall){
-                    storst_tall = a[i];
-                    bytt(a, storste_indeks,i);
+        for(int i = 0; i<a.length-1; i++){
+                if(a[i] > a[i+1]){
+                    bytt(a, i,i+1);
                 }
             }
         }
-            return storst_tall;
+            return a[a.length-1]; //Returnere siste tallet
         }
-    }
 
     public static void bytt(int[] a, int i, int j)
     {
         int temp = a[i]; a[i] = a[j]; a[j] = temp;
     }
+    //Fungerende ombyttinger!!! passerer test
     public static int ombyttinger(int[] a){
-        int antall =0;
+        int antallOmbyttinger =0;
         if(a.length == 0){
             throw new NoSuchElementException("Array :"+a+" can not be empty");
         } else {
-            int storst_tall = a[0];
-            int storste_indeks = 0;
-            for (int i = (a.length - 1); i >= 0; i--) {
-                antall++;
-                for (int j = 1; j < i; j++) {
-                    if (a[j] > storst_tall) {
-                        storst_tall = a[i];
-                        bytt(a, storste_indeks, i);
+            for (int i= 0; i < a.length-1; i++) {
+                    if (a[i] > a[i+1]) {
+                        bytt(a, i, i+1);
+                        antallOmbyttinger++;
                     }
                 }
             }
+        return antallOmbyttinger;
         }
-        return antall;
-    }
     //Slutt på oppgave 1
 
     //Oppgave 2
