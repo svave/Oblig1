@@ -238,16 +238,75 @@ public class Oblig1 {
                     tMinst_pos = i;
                 }
             }
-            tredjeMinst[0] = minst_verdi;
-            tredjeMinst[1] = nMinst_verdi;
-            tredjeMinst[2] = tMinst_verdi;
+            tredjeMinst[0] = minst_pos;
+            tredjeMinst[1] = nMinst_pos;
+            tredjeMinst[2] = tMinst_pos;
 
         }
         return tredjeMinst;
     }
+    public static int[] test(int[] x){
+        if(x.length < 3){
+            throw new java.util.NoSuchElementException("For kort array");
+        }
+        //Posisjonene til minste og nest minste verdi
 
+        int min_pos = 0;
+        int nMin_pos = 1;
+        int tMin_pos = 2;
 
+        if(x[1] < x[0]){
+            nMin_pos = 0;
+            min_pos = 1;
+        }
 
+        //Verdiene til minste og nest minste elemtent
+        int min_val = x[min_pos];
+        int nMin_val = x[nMin_pos];
+        int tMin_val = x[tMin_pos];
+
+        for(int i = 0; i < x.length; i++){
+            if(x[i] < nMin_val){
+                if(x[i] < min_val){
+                    //Ny nest minst
+                    nMin_pos = min_pos;
+                    nMin_val = min_val;
+
+                    //Ny minst
+                    min_pos = i;
+                    min_val = x[min_pos];
+                } else {
+                    //Ny nest minst
+                    nMin_pos = i;
+                    nMin_val = x[min_pos];
+                }
+            }
+        }
+        //////
+        if(x[2] < x[1]){
+            tMin_pos = 1;
+            nMin_pos = 2;
+        }
+        for(int k = 2; k < x.length; k++){
+            if(x[k] < tMin_val){
+                if(x[k] < nMin_val){
+                    //Ny tredje minst
+                    tMin_pos = nMin_pos;
+                    tMin_val = nMin_val;
+
+                    //Ny nest minst
+                    nMin_pos = k;
+                    nMin_val = x[nMin_pos];
+                } else {
+                    //Ny tredje minst
+                    tMin_pos = k;
+                    tMin_val = x[nMin_pos];
+                }
+            }
+        }
+
+        return new int[]{min_pos,nMin_pos,tMin_pos};
+    }
     //Oppgave 10 felles
     public static boolean inneholdt(String a, String b){
         if(b.contains(a)){

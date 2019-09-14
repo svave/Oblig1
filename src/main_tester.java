@@ -28,5 +28,8 @@ public class main_tester {
         //Oppgave 9
 
         System.out.println("Array med de tre minste indexene : " + Arrays.toString(Oblig1.tredjeMinst(x)));
+
+        int[] test = {12,32,4,15,2,34,56};
+        System.out.println("TEST : " + Arrays.toString(Oblig1.test(test)));
     }
 }
