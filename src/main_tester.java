@@ -16,6 +16,13 @@ public class main_tester {
         int[] b = {3,2,4,6,8,1,5,5,5,5};
         //System.out.println("Antall : "+Oblig1.antallUlikeUSortert(a));
 
+
+        //oppgave 4
+        int[] delsort = {6,10,9,4,1,3,8,5,2,7};
+        Oblig1.delsortering(delsort);
+        System.out.println("Delsortert array "+Arrays.toString(delsort));
+
+
         //Test på Oppgave 8
         int[] x = {6,10,16,11,7,12,3,9,8,5};
         int[] index = Oblig1.indekssortering(x);

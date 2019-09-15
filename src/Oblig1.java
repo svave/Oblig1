@@ -146,7 +146,28 @@ public class Oblig1 {
     //Slutt på oppgave 3
 
     //Oppgave4
-    public static void delsortering(int[] a) {
+    public static void delsortering(int[] a){
+        //oppretter noen hjelpevar for aloritmen vår
+        int i=0;
+        int j= a.length-1;
+        int left = 0;
+
+        while(i<j){ //looper gjennom
+            while(a[i]%2!=0){
+                i++;
+                left++;
+            }
+            if(a[j]%2==0 && i<j){
+                j--;
+            }
+            if(i<j){
+                int temp = a[i]; //bytter
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+        Arrays.sort(a,0,left);
+        Arrays.sort(a,left,a.length);
     }
 
     //Oppgave 7 i plenum
