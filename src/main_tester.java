@@ -22,6 +22,11 @@ public class main_tester {
         Oblig1.delsortering(delsort);
         System.out.println("Delsortert array "+Arrays.toString(delsort));
 
+        //oppgave 5
+        char[] rotering = {'A','B','C','D','E','F','G','H','I','J'};
+        Oblig1.rotasjon(rotering);
+        System.out.println(Arrays.toString(rotering));
+
 
         //Test på Oppgave 8
         int[] x = {6,10,16,11,7,12,3,9,8,5};

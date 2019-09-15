@@ -170,6 +170,22 @@ public class Oblig1 {
         Arrays.sort(a,left,a.length);
     }
 
+    //oppgave 5
+    public static void rotasjon(char[] a){
+        int d = 1;
+        if(a.length<2){ // sjekker hvis er tom eller en verdi
+            return;
+        }
+        if((d %= a.length)<0){
+            d += a.length;
+        }
+        char[] copy = Arrays.copyOfRange(a,a.length-d,a.length);//lager hjelpetabell
+        for(int i=a.length-1; i>=d; --i){
+            a[i] = a[i-d];
+        }
+        System.arraycopy(copy,0,a,0,d); //kopieringen
+    }
+
     //Oppgave 7 i plenum
     public static String flett(String s, String t){
         //Finner lengden på korteste stringen
