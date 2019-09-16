@@ -51,76 +51,35 @@ public class Oblig1 {
     //Oppgave 2
     public static int antallUlikeSortert(int[] a){
         int antallForskjellig = 0;
+        sortertKontroll(a);
         if(!(sortertKontroll(a))){
-            throw new IllegalStateException("The array is not sorted and can thus not be run");
-        } else {
+            throw new IllegalStateException("The array is not sorted and can therefore not be run");
+        } else if(a.length == 0){
+            return 0;
+        }else if(a.length == 1){
+            antallForskjellig++;
+            return antallForskjellig;
+        }
+        else {
             for(int i = 1; i<a.length; i++){
                 if(i != a[i]){
                     antallForskjellig++;
                 }else if(i == a[i]){
                     antallForskjellig++;
-                }//else if{ //NOTE: Fikse så at hvis det er 0 elementer så returnerer utkallet 0.}
+                }
             }
         }
         return antallForskjellig;
     }
-
-    public static int maks(int[] a, int fra, int til) {
-        fratilKontroll(a.length,fra,til);
-
-        if (fra == til) {
-            throw new NoSuchElementException("fra(" + fra + ") = til(" + til + ") - tomt tabellintervall!");
-        }
-
-        if(a == null) {
-            throw new NullPointerException("Arrayet metoden fikk inn er en nullpeker!");
-        }
-
-        int m = fra;              // indeks til største verdi i a[fra:til>
-        int maksverdi = a[fra];   // største verdi i a[fra:til>
-
-        for (int i = fra + 1; i < til; i++)
-        {
-            if (a[i] > maksverdi)
-            {
-                m = i;                // indeks til største verdi oppdateres
-                maksverdi = a[m];     // største verdi oppdateres
-            }
-        }
-
-        return maksverdi;  // posisjonen til største verdi i a[fra:til>
-    }
-    public static void fratilKontroll(int tablengde, int fra, int til) {
-        if (fra < 0)                                  // fra er negativ
-            throw new ArrayIndexOutOfBoundsException
-                    ("fra(" + fra + ") er negativ!");
-
-        if (til > tablengde)                          // til er utenfor tabellen
-            throw new ArrayIndexOutOfBoundsException
-                    ("til(" + til + ") > tablengde(" + tablengde + ")");
-
-        if (fra > til)                                // fra er større enn til
-            throw new IllegalArgumentException
-                    ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
-    }
-
-    public static int størst(int[] a)
-    { // bruker hele tabellen
-        return maks(a,0,a.length);     // kaller metoden over
-    }
     public static boolean sortertKontroll(int[] a){
         int lengde = a.length;
-        if(lengde < 2){
-            throw new NoSuchElementException("Has to be more than two numbers");
-        } else{
             for(int i = lengde; i>1; i--){
-                int max_tall = maks(a, 0, i);
+                int max_tall = maks(a);
                 if(!(max_tall == i-1)){
                     bytt(a, max_tall, i-1);
                     return true;
                 }
             }
-        }
         return false;
     }
     //Slutt på oppgave 2
@@ -128,20 +87,26 @@ public class Oblig1 {
 
     //Start på oppgave 3
     public static int antallUlikeUsortert(int[] a){
-        int ulike = 1;
-
-        for(int i = 1; i<a.length; i++){
-            int j =0;
-            for(j = 0; j<i; j++){
-                if(a[i] == a[j]){
-                    break;
+        int antallForskjellig =0;
+        if(a.length == 0){
+            return 0;
+        }else if(a.length == 1){
+            antallForskjellig++;
+            return antallForskjellig;
+        }
+        else {
+            for(int i = 1; i<a.length; i++){
+                for(int j = 0; j<i; j++){
+                    if(a[i] == a[j]){
+                        break;
+                    }
+                    if(i == j){
+                        antallForskjellig++;
+                    }
                 }
             }
-            if(i == j){
-                ulike++;
-            }
         }
-        return ulike;
+        return antallForskjellig;
     }
     //Slutt på oppgave 3
 
