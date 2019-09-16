@@ -37,7 +37,7 @@ public class main_tester {
         Oblig1.rotasjon(rotering2,-2);
         System.out.println(Arrays.toString(rotering2));
 
-        //Test på Oppgave 8
+        //Oppgave 8
         int[] x = {6,10,16,11,7,12,3,9,8,5};
         int[] index = Oblig1.indekssortering(x);
         System.out.println("Array x : " + Arrays.toString(x));
@@ -47,10 +47,6 @@ public class main_tester {
         }
 
         //Oppgave 9
-
-        System.out.println("Array med de tre minste indexene : " + Arrays.toString(Oblig1.tredjeMinst(x)));
-
-        int[] test = {12,32,4,15,2,34,56};
-        System.out.println("TEST : " + Arrays.toString(Oblig1.test(test)));
+        System.out.println("Array med de tre minste indexene : " + Arrays.toString(Oblig1.tredjeMin(x)));
     }
 }

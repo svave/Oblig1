@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -500,6 +501,203 @@ class Oblig1Test {
         System.out.println(d);
         //​ Utskrift: ALGORITMER OG DATASTRUKTURER
     }
+
+
+    ///// Oppgave 8 //////////////////////////////////////
+    @org.junit.jupiter.api.Test
+    void oppgave8() {
+        int antallFeil = 0;
+
+        int[] a = {};  // en tom tabell
+        int[] indeks = null;
+
+        try {
+            indeks = Oblig1.indekssortering(a);  // kaller metoden
+        } catch (Exception e) {
+            System.out.println
+                    ("Opgave 8: a) Skal ikke kastes unntak for en tom tabell!");
+            antallFeil++;
+        }
+
+        if (indeks == null || indeks.length > 0) {
+            System.out.println
+                    ("Opgave 8: b) Indekstabellen skal ha lengde 0!");
+            antallFeil++;
+        }
+
+        a = new int[]{5};
+
+        try {
+            indeks = Oblig1.indekssortering(a);  // kaller metoden
+        } catch (Exception e) {
+            System.out.println
+                    ("Opgave 8: c) Skal ikke kastes unntak her!");
+            antallFeil++;
+        }
+
+        if (indeks == null || indeks.length == 0 || indeks.length > 1) {
+            System.out.println
+                    ("Opgave 8: d) Indekstabellen skal ha lengde 1!");
+            antallFeil++;
+        }
+
+        if (indeks[0] != 0) {
+            System.out.println
+                    ("Opgave 8: e) indeks[0] skal være lik 0!");
+            antallFeil++;
+        }
+
+        a = new int[]{1, 2, 3, 4, 5, 6};
+        int[] b = new int[]{1, 2, 3, 4, 5, 6};
+        boolean flere = true;
+
+        do {
+            int[] c = a.clone();
+            indeks = Oblig1.indekssortering(c);
+
+            if (!Arrays.equals(a, c)) {
+                System.out.println
+                        ("Oppgave 8: f) Tabellen før kallet:   " + Arrays.toString(a));
+                System.out.println
+                        ("              Tabellen etter kallet: " + Arrays.toString(c));
+                System.out.println
+                        ("              Parametertabellen skal ikke endres!");
+
+                antallFeil++;
+                break;
+            }
+
+            int[] d = new int[a.length];
+            for (int i = 0; i < d.length; i++) d[i] = a[indeks[i]];
+
+            if (!Arrays.equals(b, d)) {
+                System.out.println
+                        ("Oppgave 8: g) Feil i indekstabellen for a = " + Arrays.toString(a));
+
+                antallFeil++;
+                break;
+            }
+
+        } while (nestePermutasjon(a));
+
+        a = new int[]{5, 2, 8, 3, 5, 10, 7, 5, 2, 10, 6};
+        int[] c = a.clone();
+        b = new int[]{2, 2, 3, 5, 5, 5, 6, 7, 8, 10, 10};
+        indeks = Oblig1.indekssortering(a);
+        int[] d = new int[a.length];
+        for (int i = 0; i < d.length; i++) d[i] = a[indeks[i]];
+
+        if (!Arrays.equals(a, c)) {
+            System.out.println
+                    ("Oppgave 8: h) Parametertabellen endres når den er lik");
+            System.out.println
+                    ("            " + Arrays.toString(a));
+
+            antallFeil++;
+        }
+
+        if (!Arrays.equals(b, d)) {
+            System.out.println
+                    ("Oppgave 8: i) Feil i indekstabellen for a = " + Arrays.toString(a));
+
+            antallFeil++;
+        }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 8");
+    }
+
+    ///// Oppgave 9 //////////////////////////////////////
+    @org.junit.jupiter.api.Test
+    void oppgave9() {
+        int antallFeil = 0;
+
+        boolean unntak = false;
+        int[] test = {1, 2};
+        try {
+            Oblig1.tredjeMin(test);  // kaller metoden
+        } catch (Exception e) {
+            unntak = true;
+            if (!(e instanceof NoSuchElementException)) {
+                System.out.println("Opgave 9: a) Feil unntak!");
+                antallFeil++;
+            }
+        }
+
+        if (!unntak) {
+            System.out.println
+                    ("Opgave 9: b) Det skal kastes unntak for tabeller med for få verdier!");
+            antallFeil++;
+        }
+
+        int[] tabell = new int[]{1, 2, 3};
+        boolean flere1 = true;
+
+        while (flere1) {
+            int[] c = Oblig1.tredjeMin(tabell);
+
+            if (tabell[c[0]] != 1 || tabell[c[1]] != 2 || tabell[c[2]] != 3) {
+                System.out.println("Oppgave 9: c) Feil for " + Arrays.toString(tabell));
+                antallFeil++;
+                break;
+            }
+            flere1 = nestePermutasjon(tabell);
+        }
+
+        int[] b = randPerm(10);
+        int[] d = Oblig1.tredjeMin(b);
+
+        if (b[d[0]] != 1 || b[d[1]] != 2 || b[d[2]] != 3) {
+            System.out.println("Oppgave 9: d) Feil for " + Arrays.toString(b));
+            antallFeil++;
+        }
+
+        int[] x = {6, 3, 9, 1, 10, 5, 2, 8, 4, 7};
+        int[] y = x.clone();
+        Oblig1.tredjeMin(x);
+
+        if (!Arrays.equals(x, y)) {
+            System.out.println
+                    ("Oppgave 9: e) Metoden gjør endringer i tabellen!");
+            System.out.println("Tabellen før: " + Arrays.toString(y));
+            System.out.println("Tabellen etter: " + Arrays.toString(x));
+            antallFeil++;
+        }
+
+        int[] a = {1, 2, 3, 4, 5, 6};
+        boolean flere2 = true;
+
+        while (flere2) {
+            int[] c = Oblig1.tredjeMin(a);
+
+            int m = c[0];
+            int nm = c[1];
+            int tm = c[2];
+
+            if (a[m] != 1 || a[nm] != 2 || a[tm] != 3) {
+                System.out.println("Oppgave 9: f) Feil for " + Arrays.toString(a));
+                antallFeil++;
+                break;
+            }
+
+            flere2 = nestePermutasjon(a);
+        }
+
+        a = randPerm(100_000);
+        long tid = System.currentTimeMillis();
+        Oblig1.tredjeMin(a);
+        tid = System.currentTimeMillis() - tid;
+
+
+        if (tid > 100) {
+            System.out.println("Oppgave 9: g) Metoden er ineffektiv! Bruker du");
+            System.out.println("metoden indekssortering på hele tabellen?");
+            antallFeil++;
+        }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 9");
+    }
+
+
 
     @org.junit.jupiter.api.Test
     void oppgave10() {
