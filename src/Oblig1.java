@@ -49,27 +49,63 @@ public class Oblig1 {
 
     //Oppgave 2
     public static int antallUlikeSortert(int[] a){
+        int antallForskjellig = 0;
+        sortertKontroll(a);
+        if(!(sortertKontroll(a))){
+            throw new IllegalStateException("The array is not sorted and can therefore not be run");
+        } else if(a.length == 0){
+            return 0;
+        }else if(a.length == 1){
+            antallForskjellig++;
+            return antallForskjellig;
+        }
+        else {
+            for(int i = 1; i<a.length; i++){
+                if(i != a[i]){
+                    antallForskjellig++;
+                }else if(i == a[i]){
+                    antallForskjellig++;
+                }
+            }
+        }
+        return antallForskjellig;
     }
-
+    public static boolean sortertKontroll(int[] a){
+        int lengde = a.length;
+            for(int i = lengde; i>1; i--){
+                int max_tall = maks(a);
+                if(!(max_tall == i-1)){
+                    bytt(a, max_tall, i-1);
+                    return true;
+                }
+            }
+        return false;
+    }
     //Slutt på oppgave 2
 
 
     //Start på oppgave 3
     public static int antallUlikeUsortert(int[] a){
-        int ulike = 1;
-
-        for(int i = 1; i<a.length; i++){
-            int j =0;
-            for(j = 0; j<i; j++){
-                if(a[i] == a[j]){
-                    break;
+        int antallForskjellig =0;
+        if(a.length == 0){
+            return 0;
+        }else if(a.length == 1){
+            antallForskjellig++;
+            return antallForskjellig;
+        }
+        else {
+            for(int i = 1; i<a.length; i++){
+                for(int j = 0; j<i; j++){
+                    if(a[i] == a[j]){
+                        break;
+                    }
+                    if(i == j){
+                        antallForskjellig++;
+                    }
                 }
             }
-            if(i == j){
-                ulike++;
-            }
         }
-        return ulike;
+        return antallForskjellig;
     }
     //Slutt på oppgave 3
 
