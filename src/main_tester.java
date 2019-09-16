@@ -26,7 +26,16 @@ public class main_tester {
         char[] rotering = {'A','B','C','D','E','F','G','H','I','J'};
         Oblig1.rotasjon(rotering);
         System.out.println(Arrays.toString(rotering));
+        System.out.println();
 
+        //oppgave 6
+        char[] rotering2 = {'A','B','C','D','E','F','G','H','I','J'};
+        System.out.println(Arrays.toString(rotering2));
+
+        Oblig1.rotasjon(rotering2,3);
+        System.out.println(Arrays.toString(rotering2));
+        Oblig1.rotasjon(rotering2,-2);
+        System.out.println(Arrays.toString(rotering2));
 
         //Test på Oppgave 8
         int[] x = {6,10,16,11,7,12,3,9,8,5};

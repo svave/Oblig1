@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -257,7 +258,7 @@ class Oblig1Test {
         b = new int[]{1, 3, 5, 2, 4, 6};
         boolean flere = true;
 
-       /* do {
+       do {
             int[] c = a.clone();
             Oblig1.delsortering(c);
 
@@ -272,7 +273,7 @@ class Oblig1Test {
                 antallFeil++;
                 break;
             }
-        } while (nestePermutasjon(a));*/
+        } while (nestePermutasjon(a));
 
         a = new int[]{-4, -1, 3, 0, 2, -3, -2, 4, 1};
         b = new int[]{-3, -1, 1, 3, -4, -2, 0, 2, 4};
@@ -292,7 +293,7 @@ class Oblig1Test {
         }
 
         if (antallFeil == 0) {
-            //a = randPerm(100000);
+            a = randPerm(100000);
             long tid = System.currentTimeMillis();
             Oblig1.delsortering(a);
             tid = System.currentTimeMillis() - tid;
@@ -371,7 +372,118 @@ class Oblig1Test {
         assertEquals(0, antallFeil, "Du har for mange feil i oppgave 5");
     }
 
+    ///// Oppgave 6 //////////////////////////////////////
+    @org.junit.jupiter.api.Test
+    void oppgave6() {
+        int antallFeil = 0;
 
+        char[] a = {};
+
+        try {
+            Oblig1.rotasjon(a, 1);  // kaller metoden
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println
+                    ("Oppgave 6: a) Skal ikke kaste unntak for en tom tabell!!");
+            antallFeil++;
+        }
+
+        char[] b = {'A'};
+        char[] b0 = {'A'};
+        Oblig1.rotasjon(b, 0);
+        if (!Arrays.equals(b, b0)) {
+            System.out.println("Oppgave 6: b) Feil hvis tabellen har ett element!");
+            antallFeil++;
+        }
+
+        Oblig1.rotasjon(b, 1);
+        if (!Arrays.equals(b, b0)) {
+            System.out.println("Oppgave 6: c) Feil hvis tabellen har ett element!");
+            antallFeil++;
+        }
+
+        Oblig1.rotasjon(b, -1);
+        if (!Arrays.equals(b, b0)) {
+            System.out.println("Oppgave 6: d) Feil hvis tabellen har ett element!");
+            antallFeil++;
+        }
+
+        char[] c = {'A', 'B'};
+        char[] c0 = {'B', 'A'};
+        Oblig1.rotasjon(c, 1);
+
+        if (!Arrays.equals(c, c0)) {
+            System.out.println("Oppgave 6: e) Feil hvis tabellen har to elementer!");
+            antallFeil++;
+        }
+
+        c = new char[]{'A', 'B'};
+
+        Oblig1.rotasjon(c, -1);
+        if (!Arrays.equals(c, c0)) {
+            System.out.println("Oppgave 6: f) Feil hvis tabellen har to elementer!");
+            antallFeil++;
+        }
+
+        char[] d = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+        char[] d0 = {'G', 'H', 'I', 'J', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+        Oblig1.rotasjon(d, 4);
+        if (!Arrays.equals(d, d0)) {
+            System.out.println("Oppgave 6: g) Feil hvis tabellen har flere elementer!");
+            antallFeil++;
+        }
+
+        d = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+        Oblig1.rotasjon(d, -6);
+        if (!Arrays.equals(d, d0)) {
+            System.out.println("Oppgave 6: h) Feil hvis tabellen har flere elementer!");
+            antallFeil++;
+        }
+
+        char[] x = new char[100_000];
+        long tid = System.currentTimeMillis();
+        Oblig1.rotasjon(x, 99_999);
+        tid = System.currentTimeMillis() - tid;
+
+        if (tid > 20) {
+            System.out.println("Oppgave 6: i) Metoden "
+                    + "er for ineffektiv. Må forbedres!");
+            antallFeil++;
+        }
+
+        tid = System.currentTimeMillis();
+        Oblig1.rotasjon(x, 199_999);
+        tid = System.currentTimeMillis() - tid;
+
+        if (tid > 20) {
+            System.out.println("Oppgave 6: j) Metoden "
+                    + "er for ineffektiv. Må forbedres!");
+            antallFeil++;
+        }
+
+        tid = System.currentTimeMillis();
+        Oblig1.rotasjon(x, 50_000);
+        tid = System.currentTimeMillis() - tid;
+
+        if (tid > 20) {
+            System.out.println("Oppgave 6: k) Metoden "
+                    + "er for ineffektiv. Må forbedres!");
+            antallFeil++;
+        }
+
+        tid = System.currentTimeMillis();
+        Oblig1.rotasjon(x, -40_000);
+        tid = System.currentTimeMillis() - tid;
+
+        if (tid > 20) {
+            System.out.println("Oppgave 6: l) Metoden "
+                    + "er for ineffektiv. Må forbedres!");
+            antallFeil++;
+        }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 6");
+    }
 
 
     @org.junit.jupiter.api.Test
@@ -447,4 +559,53 @@ class Oblig1Test {
         System.out.println(Oblig1.inneholdt(a,c));
 
     }
-}
+
+
+    ///// Hjelpemetoder /////////////////////////////
+
+    public static void bytt(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
+    public static boolean nestePermutasjon(int[] a) {
+        int n = a.length;
+        int i = n - 2;
+
+        while (i >= 0 && a[i] > a[i + 1]) i--;
+
+        if (i < 0) return false;
+
+        int verdi = a[i];
+        int j = n - 1;
+
+        while (verdi > a[j]) j--;
+        bytt(a, i, j);
+
+        i++;
+        j = n - 1;
+        while (i < j) bytt(a, i++, j--);
+        return true;
+    }
+
+    public static int[] randPerm(int n)  // en effektiv versjon
+    {
+        Random r = new Random();         // en randomgenerator
+        int[] a = new int[n];            // en tabell med plass til n tall
+        for (int i = 0; i < n; i++)
+            a[i] = i + 1;                  // legger inn tallene 1, 2, . , n
+
+        for (int k = n - 1; k > 0; k--)  // løkke som går n - 1 ganger
+        {
+            int i = r.nextInt(k + 1);        // en tilfeldig tall fra 0 til k
+
+            int temp = a[k];
+            a[k] = a[i];
+            a[i] = temp;
+        }
+
+        return a;                        // permutasjonen returneres
+    }
+
+} // class Oblig1Test
