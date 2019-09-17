@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class main_tester {
     public static void main(String[]args){
         //Test på opppgave 1
@@ -51,12 +53,12 @@ public class main_tester {
              System.out.println("Metoden E gir : "+Oblig1.antallUlikeUsortert(e));
             System.out.println("Metoden F gir : "+Oblig1.antallUlikeUsortert(f));
         }
-*//*
+*/
         //oppgave 4
         int[] delsort = {6,10,9,4,1,3,8,5,2,7};
         Oblig1.delsortering(delsort);
-        System.out.println("Delsortert array "+Arrays.toString(delsort));
-
+        System.out.println("Delsortert array "+ Arrays.toString(delsort));
+/*
         //oppgave 5
         char[] rotering = {'A','B','C','D','E','F','G','H','I','J'};
         Oblig1.rotasjon(rotering);

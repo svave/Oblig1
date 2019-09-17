@@ -125,26 +125,30 @@ public class Oblig1 {
     //Oppgave4
     public static void delsortering(int[] a){
         //oppretter noen hjelpevar for aloritmen vår
-        int i=0;
-        int j= a.length-1;
-        int left = 0;
+        int i=0; //partall
+        int j= a.length-1; //oddetall
+        int mid = 0;
+
+        if (a.length == 0) { //hvis tom da returnerer den
+            return;
+        }
 
         while(i<j){ //looper gjennom
-            while(a[i]%2!=0){
+            while((i<=j) && a[i]%2!=0 && i<a.length){
                 i++;
-                left++;
+                mid++;
             }
-            if(a[j]%2==0 && i<j){
+            while((i<=j) && a[j]%2==0){
                 j--;
             }
             if(i<j){
-                int temp = a[i]; //bytter
+                int temp = a[i]; //bytter eller swapper par med odd slik at odd forekommer først.
                 a[i] = a[j];
                 a[j] = temp;
             }
         }
-        Arrays.sort(a,0,left);
-        Arrays.sort(a,left,a.length);
+        Arrays.sort(a,0,mid); //bruker java mekanisme til å sortere
+        Arrays.sort(a,mid,a.length);
     }
 
     //oppgave 5
