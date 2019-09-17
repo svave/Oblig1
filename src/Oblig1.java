@@ -48,38 +48,50 @@ public class Oblig1 {
         }
     //Slutt på oppgave 1
 
-    //Oppgave 2
     public static int antallUlikeSortert(int[] a){
         int antallForskjellig = 0;
-        sortertKontroll(a);
-        if(!(sortertKontroll(a))){
-            throw new IllegalStateException("The array is not sorted and can therefore not be run");
-        } else if(a.length == 0){
-            return 0;
+        //Sjekker lengde på array
+        if(a.length == 0){
+            return antallForskjellig;
         }else if(a.length == 1){
             antallForskjellig++;
             return antallForskjellig;
-        }
-        else {
-            for(int i = 1; i<a.length; i++){
-                if(i != a[i]){
-                    antallForskjellig++;
-                }else if(i == a[i]){
-                    antallForskjellig++;
+        }else{
+            antallForskjellig++;
+            boolean sorter = false;
+            //sjekker om array a er sortert
+            for(int i =0; i<a.length-1;i++){
+                if(a[i]> a[i+1]){
+                    sorter= false; //Det er bevist array ikke er sortert.
+                    throw new IllegalStateException("The array is not sorted and can therefore not be run");
+                }
+                else{
+                    sorter = true;
+                }
+            }
+            if(sorter){
+                for(int j = 1; j<a.length; j++){
+                    if(j != a[j]){
+                        antallForskjellig++;
+                    }else if(j == a[j]){
+                        antallForskjellig++;
+                    }
+
                 }
             }
         }
         return antallForskjellig;
     }
+
     public static boolean sortertKontroll(int[] a){
         int lengde = a.length;
-            for(int i = lengde; i>1; i--){
-                int max_tall = maks(a);
-                if(!(max_tall == i-1)){
-                    bytt(a, max_tall, i-1);
-                    return true;
-                }
+        for(int i = lengde; i>1; i--){
+            int max_tall = maks(a);
+            if(!(max_tall == i-1)){
+                bytt(a, max_tall, i-1);
+                return true;
             }
+        }
         return false;
     }
     //Slutt på oppgave 2
