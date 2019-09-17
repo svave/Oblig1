@@ -48,78 +48,78 @@ public class Oblig1 {
         }
     //Slutt på oppgave 1
 
-    public static int antallUlikeSortert(int[] a){
+    public static int antallUlikeSortert(int[] a) {
         int antallForskjellig = 0;
         //Sjekker lengde på array
-        if(a.length == 0){
+        if (a.length == 0) {
             return antallForskjellig;
-        }else if(a.length == 1){
+        } else {
+            boolean funnet = false;
+
+            int test;
+
             antallForskjellig++;
-            return antallForskjellig;
-        }else{
-            antallForskjellig++;
+
             boolean sorter = false;
+
             //sjekker om array a er sortert
-            for(int i =0; i<a.length-1;i++){
-                if(a[i]> a[i+1]){
-                    sorter= false; //Det er bevist array ikke er sortert.
+            for (int i = 0; i < a.length - 1; i++) {
+                if (a[i] > a[i + 1]) {
+                    sorter = false; //Det er bevist array ikke er sortert.
                     throw new IllegalStateException("The array is not sorted and can therefore not be run");
-                }
-                else{
+                } else {
                     sorter = true;
                 }
             }
-            if(sorter){
-                for(int j = 1; j<a.length; j++){
-                    if(j != a[j]){
-                        antallForskjellig++;
-                    }else if(j == a[j]){
-                        antallForskjellig++;
-                    }
+            if (sorter) {
+                for (int j = 0; j < a.length-1; j++) {
+                    if (a[j] != a[j+1]) {
+                        test = a[j+1];
 
+                        //Må lage sjekk om j har kommet før
+                        if(a[j] == test){
+                            funnet = true;
+
+                        }
+                        if(!funnet){
+                            antallForskjellig++;
+                        }
+                    }
                 }
             }
+            return antallForskjellig;
         }
-        return antallForskjellig;
-    }
-
-    public static boolean sortertKontroll(int[] a){
-        int lengde = a.length;
-        for(int i = lengde; i>1; i--){
-            int max_tall = maks(a);
-            if(!(max_tall == i-1)){
-                bytt(a, max_tall, i-1);
-                return true;
-            }
-        }
-        return false;
     }
     //Slutt på oppgave 2
 
 
     //Start på oppgave 3
     public static int antallUlikeUsortert(int[] a){
-        int antallForskjellig =0;
-        if(a.length == 0){
-            return 0;
-        }else if(a.length == 1){
-            antallForskjellig++;
+        int antallForskjellig = 0;
+
+        //Sjekker lengde på array
+        if (a.length == 0) {
             return antallForskjellig;
-        }
-        else {
-            for(int i = 1; i<a.length; i++){
-                for(int j = 0; j<i; j++){
-                    if(a[i] == a[j]){
-                        break;
-                    }
-                    if(i == j){
-                        antallForskjellig++;
+        } else {
+            boolean funnet;
+            antallForskjellig++;
+
+                for (int j = 1; j < a.length; j++) {
+                        funnet = false;
+                        //Må lage sjekk om j har kommet før
+                        for(int i = 0; i < j; i++){
+                            if(a[j] == a[i]){
+                                funnet = true;
+                            }
+                        }
+                        if(!funnet){
+                            antallForskjellig++;
+                        }
                     }
                 }
-            }
-        }
         return antallForskjellig;
     }
+
     //Slutt på oppgave 3
 
     //Oppgave4
