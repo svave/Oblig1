@@ -201,12 +201,6 @@ public class Oblig1 {
         String ut = "";
         StringBuilder sb = new StringBuilder();
 
-        if(s.length() == 0 && t.length() == 0 ){
-            return ut;
-        }else if(s.length() == 0 && t.length()>1 || s.length()>1 && t.length() == 0){
-            sb.append(s.substring(lengde)).append(t.substring(lengde));
-        }
-
         for(int i =0; i< lengde; i++){
             sb.append(s.charAt(i)).append(t.charAt(i));
         }
@@ -219,8 +213,8 @@ public class Oblig1 {
        //Finner størte ord
         int max_lengde = 0;
         for(int k = 0; k<s.length; k++){
-            if(k > max_lengde){
-                max_lengde = k;
+            if(s[k].length() > max_lengde){
+                max_lengde = s[k].length();
             }
         }
         for(int j = 0; j<max_lengde; j++){
