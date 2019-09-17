@@ -223,14 +223,10 @@ public class Oblig1 {
         int[] index_pos = new int[x.length];
         int[] y = x.clone();
 
-        if(y.length < 0){
-            new java.util.NoSuchElementException("Arrayet er tomt");
-        }
-
         //her loopes det gjennom array y for å samle inn indexverdiene til elementene
         for (int i = 0; i < y.length; i++) {
             int min_value = y[i];
-            int index = 0;
+            int index = i;
 
             //i denne loopen blir den innhentede indexverdien lagt inn i indexsortering arrayet
             for (int j = 0; j < index_pos.length; j++) {
@@ -251,27 +247,28 @@ public class Oblig1 {
         if(x.length < 3){
             throw new java.util.NoSuchElementException("For kort array");
         }
+        int[] temp_index;
+        int[] temp = new int[3];
+        System.arraycopy(x,0,temp,0,3);
+        temp_index = Oblig1.indekssortering(temp);
+
         //Posisjonene til minste, nest og tredje minste verdi
 
-        int min_pos = 0;
-        int nMin_pos = 1;
-        int tMin_pos = 2;
+        int min_pos = temp_index[0];
+        int nMin_pos = temp_index[1];
+        int tMin_pos = temp_index[2];
+
 
         //Verdiene til minste, nest og tredje minste elemtent
         int min_val = x[min_pos];
         int nMin_val = x[nMin_pos];
         int tMin_val = x[tMin_pos];
 
-        //Skifter posisjoner
-        if(x[1] < x[0]){
-            nMin_pos = 0;
-            min_pos = 1;
+        if(x.length == 3){
+            return temp_index;
         }
-        if(x[2] < x[1]){
-            tMin_pos = 1;
-            nMin_pos = 2;
-        }
-        for(int i = 0; i < x.length; i++){
+
+        for(int i = 3; i < x.length; i++){
             if (x[i] < min_val) {
                 //Ny tredje minst
                 tMin_pos = nMin_pos;
@@ -283,7 +280,7 @@ public class Oblig1 {
 
                 //Ny minst
                 min_pos = i;
-                min_val = x[min_pos];
+                min_val = x[i];
             } else if(x[i] < nMin_val) {
                 //Ny tredje minst
                 tMin_pos = nMin_pos;
@@ -291,13 +288,16 @@ public class Oblig1 {
 
                 //Ny nest minst
                 nMin_pos = i;
-                nMin_val = x[nMin_pos];
+                nMin_val = x[i];
             } else if(x[i] < tMin_val){
                 tMin_pos = i;
-                tMin_val = x[tMin_pos];
+                tMin_val = x[i];
             }
         }
-        return new int[]{min_pos,nMin_pos,tMin_pos};
+        temp_index[0] = min_pos;
+        temp_index[1] = nMin_pos;
+        temp_index[2] = tMin_pos;
+        return temp_index;
     }
 
 

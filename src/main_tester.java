@@ -38,15 +38,19 @@ public class main_tester {
         System.out.println(Arrays.toString(rotering2));
 
         //Oppgave 8
+        System.out.print("\n\n ////////Oppgave 8 ////////\n\n");
+
         int[] x = {6,10,16,11,7,12,3,9,8,5};
         int[] index = Oblig1.indekssortering(x);
+
         System.out.println("Array x : " + Arrays.toString(x));
         System.out.println("Array med indekssortering : " + Arrays.toString(index));
         for(int i = 0; i < x.length; i++){
-            System.out.println(x[index[i]] + " ");
+            System.out.print(x[index[i]] + " ");
         }
 
         //Oppgave 9
+        System.out.print("\n\n////////Oppgave 9 ////////\n\n");
         System.out.println("Array med de tre minste indexene : " + Arrays.toString(Oblig1.tredjeMin(x)));
     }
 }
