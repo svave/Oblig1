@@ -48,66 +48,78 @@ public class Oblig1 {
         }
     //Slutt på oppgave 1
 
-    //Oppgave 2
-    public static int antallUlikeSortert(int[] a){
+    public static int antallUlikeSortert(int[] a) {
         int antallForskjellig = 0;
-        sortertKontroll(a);
-        if(!(sortertKontroll(a))){
-            throw new IllegalStateException("The array is not sorted and can therefore not be run");
-        } else if(a.length == 0){
-            return 0;
-        }else if(a.length == 1){
+        //Sjekker lengde på array
+        if (a.length == 0) {
+            return antallForskjellig;
+        } else {
+            boolean funnet = false;
+
+            int test;
+
             antallForskjellig++;
+
+            boolean sorter = false;
+
+            //sjekker om array a er sortert
+            for (int i = 0; i < a.length - 1; i++) {
+                if (a[i] > a[i + 1]) {
+                    sorter = false; //Det er bevist array ikke er sortert.
+                    throw new IllegalStateException("The array is not sorted and can therefore not be run");
+                } else {
+                    sorter = true;
+                }
+            }
+            if (sorter) {
+                for (int j = 0; j < a.length-1; j++) {
+                    if (a[j] != a[j+1]) {
+                        test = a[j+1];
+
+                        //Må lage sjekk om j har kommet før
+                        if(a[j] == test){
+                            funnet = true;
+
+                        }
+                        if(!funnet){
+                            antallForskjellig++;
+                        }
+                    }
+                }
+            }
             return antallForskjellig;
         }
-        else {
-            for(int i = 1; i<a.length; i++){
-                if(i != a[i]){
-                    antallForskjellig++;
-                }else if(i == a[i]){
-                    antallForskjellig++;
-                }
-            }
-        }
-        return antallForskjellig;
-    }
-    public static boolean sortertKontroll(int[] a){
-        int lengde = a.length;
-            for(int i = lengde; i>1; i--){
-                int max_tall = maks(a);
-                if(!(max_tall == i-1)){
-                    bytt(a, max_tall, i-1);
-                    return true;
-                }
-            }
-        return false;
     }
     //Slutt på oppgave 2
 
 
     //Start på oppgave 3
     public static int antallUlikeUsortert(int[] a){
-        int antallForskjellig =0;
-        if(a.length == 0){
-            return 0;
-        }else if(a.length == 1){
-            antallForskjellig++;
+        int antallForskjellig = 0;
+
+        //Sjekker lengde på array
+        if (a.length == 0) {
             return antallForskjellig;
-        }
-        else {
-            for(int i = 1; i<a.length; i++){
-                for(int j = 0; j<i; j++){
-                    if(a[i] == a[j]){
-                        break;
-                    }
-                    if(i == j){
-                        antallForskjellig++;
+        } else {
+            boolean funnet;
+            antallForskjellig++;
+
+                for (int j = 1; j < a.length; j++) {
+                        funnet = false;
+                        //Må lage sjekk om j har kommet før
+                        for(int i = 0; i < j; i++){
+                            if(a[j] == a[i]){
+                                funnet = true;
+                            }
+                        }
+                        if(!funnet){
+                            antallForskjellig++;
+                        }
                     }
                 }
-            }
-        }
         return antallForskjellig;
     }
+
     //Slutt på oppgave 3
 
     //Oppgave4
@@ -189,13 +201,6 @@ public class Oblig1 {
         String ut = "";
         StringBuilder sb = new StringBuilder();
 
-        if(lengde == 0 ){
-            ut += " ";
-            return ut;
-        }else if(s.length() == 0 && t.length()>1 || s.length()>1 && t.length() == 0){
-            sb.append(s.substring(lengde)).append(t.substring(lengde));
-        }
-
         for(int i =0; i< lengde; i++){
             sb.append(s.charAt(i)).append(t.charAt(i));
         }
@@ -203,17 +208,24 @@ public class Oblig1 {
         return sb.toString();
     }
     //Oppgave 7.b
-    public static String flett(String[] s){
-        String ut = "";
-        int lengde = s.length;
-        String karakter = s[0];
-
-        StringBuilder sb = new StringBuilder();
-        for(int i =0; i<lengde; i++){
-            sb.append(s[i].charAt(i));
-            karakter = s[i];
+    public static String flett(String... s){
+       String ut = "";
+       //Finner størte ord
+        int max_lengde = 0;
+        for(int k = 0; k<s.length; k++){
+            if(s[k].length() > max_lengde){
+                max_lengde = s[k].length();
+            }
         }
-        return karakter;
+        for(int j = 0; j<max_lengde; j++){
+            for(int i =0; i<s.length; i++){
+                if(s[i].length() <= j){
+                    continue;
+                }
+                ut += s[i].charAt(j);
+          }
+        }return ut;
+
     }
 
     //Oppgave 8
@@ -304,18 +316,46 @@ public class Oblig1 {
 
     //Oppgave 10 felles
     public static boolean inneholdt(String a, String b){
-        if(b.contains(a)){
-            return true;
-        } else {
-            return false;
-        }
-        /* Muligens riktig
-        char[] charsA = a.toCharArray();
-        char[] charsB = b.toCharArray();
-        Arrays.sort(charsA);
-        Arrays.sort(charsB);
-        return Arrays.equals(charsA,charsB);
-        * */
+      //  quickSort(a, 0, a.length());
+
+
+
+        return false;
     }
+    private static void quickSort(String[] a, int start, int slutt){
+        int i = start;
+        int j = slutt;
+
+        String[] tempArray;
+     //   tempArray = a
+
+
+        //Sjekker bare strnger som er større eller lik 1 karakterer i
+        if(j-i >= 1){
+            String pivot = a[i];
+
+            while(j>i){
+                while(a[i].compareTo(pivot) <=0 && i < slutt && j > i){
+                    i++;
+                }
+
+                while(a[j].compareTo(pivot) >= 0 && j > start && j >= i){
+                    j--;
+                }
+
+                if(j > i){
+                    byttString(a, i, j);
+                }
+            }
+            byttString(a, start, j);
+            quickSort(a, start, j-1);
+            quickSort(a, j+1, slutt);
+        }
+    }
+    public static void byttString(String[] a, int i, int j)
+    {
+        String temp = a[i]; a[i] = a[j]; a[j] = temp;
+    }
+
 
 }
