@@ -1,3 +1,6 @@
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import javax.swing.text.StyledEditorKit;
 import java.util.Arrays;
 
 public class main_tester {
@@ -53,7 +56,7 @@ public class main_tester {
              System.out.println("Metoden E gir : "+Oblig1.antallUlikeUsortert(e));
             System.out.println("Metoden F gir : "+Oblig1.antallUlikeUsortert(f));
         }
-*/
+*/ /*
         //oppgave 4
         int[] delsort = {6,10,9,4,1,3,8,5,2,7};
         Oblig1.delsortering(delsort);
@@ -100,6 +103,15 @@ public class main_tester {
         System.out.println(h); // ABCDE FGHI JKLM NOPQ RSTU VWXY
         String test = Oblig1.flett("AFK", "BGLP", "CHMQT", "DINRUW", "EJOSVXY");
         System.out.println(test);
+*/
+        Boolean innEn = Oblig1.inneholdt("ABBA","BARAB");
+        Boolean innTo = Oblig1.inneholdt("ABBA"," ABBABBA");
+        Boolean innTre = Oblig1.inneholdt("ABBA"," BARBERER ");
+     //   Boolean innFire = Oblig1.inneholdt("ABBA","ioio");
+        System.out.println(innEn);
+        System.out.println(innTo);
+        System.out.println(innTre);
+     //   System.out.println(innFire);
 
     }
 }
