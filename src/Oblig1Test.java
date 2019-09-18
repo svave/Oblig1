@@ -6,29 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Oblig1Test {
 
-    @org.junit.jupiter.api.Test
-    void maks() {
-        int[] a = {3};
-        int[] b = {5, 2, 8, 4, 7, 6};
-        int[] c = {5, 4, 3, 2, 1};
-        int[] d = {1, 2, 3, 4, 5};
-        if (//Oblig1.maks(a) != 3 ||
-                Oblig1.maks(b) != 8
-               //|| Oblig1.maks(c) != 5 || Oblig1.maks(d) != 5
-                        ) {
-            System.out.println("Oppgave 1: c) Maks-metoden: Feil resultat!");
-            System.out.println(Arrays.toString(b));
-
-        }
-
-    }
-    @org.junit.jupiter.api.Test
-    void ombyttinger() {
-        int[] a = {4,2,1,3};
-        assertEquals(4, Oblig1.ombyttinger(a));
-    }
-
-
     ///// Oppgave 1 //////////////////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave1() {

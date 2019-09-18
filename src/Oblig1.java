@@ -315,46 +315,8 @@ public class Oblig1 {
 
     //Oppgave 10 felles
     public static boolean inneholdt(String a, String b){
-      //  quickSort(a, 0, a.length());
-
 
 
         return false;
     }
-    private static void quickSort(String[] a, int start, int slutt){
-        int i = start;
-        int j = slutt;
-
-        String[] tempArray;
-     //   tempArray = a
-
-
-        //Sjekker bare strnger som er større eller lik 1 karakterer i
-        if(j-i >= 1){
-            String pivot = a[i];
-
-            while(j>i){
-                while(a[i].compareTo(pivot) <=0 && i < slutt && j > i){
-                    i++;
-                }
-
-                while(a[j].compareTo(pivot) >= 0 && j > start && j >= i){
-                    j--;
-                }
-
-                if(j > i){
-                    byttString(a, i, j);
-                }
-            }
-            byttString(a, start, j);
-            quickSort(a, start, j-1);
-            quickSort(a, j+1, slutt);
-        }
-    }
-    public static void byttString(String[] a, int i, int j)
-    {
-        String temp = a[i]; a[i] = a[j]; a[j] = temp;
-    }
-
-
 }
