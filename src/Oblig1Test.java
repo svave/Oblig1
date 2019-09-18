@@ -1,10 +1,28 @@
+
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Oblig1Test {
+////// Testprogram for Oblig 1 - 2019 ////////////////////////
+/*
+Testprogrammet har en main-metode som tester metodene i de 10 oppgavene.
+Som utgangspunkt er metodekallene kommentert vekk. Her må en passe på
+å bruke nøyaktig samme navn på metodene som det er bedt om i oppgaveteksten.
+
+Når en mener at en oppgave/metode er løst, bør en først teste med egne tester.
+Når en så tror at koden er feilfri, kan testprogrammet brukes ved at
+kommentartegnet foran metodekallet tas vekk. Testprogrammet må gi 0 feil før
+Oblig 1 sendes inn!
+*/
+///// Oppdatert 3. september 2019 ///////////////
+
+/**
+ * Alle tester i denne klassen skal passere når du leverer inn.
+ * Du skal ikke endre noe som helst i denne filen
+ */
+public class Oblig1Test {
 
     ///// Oppgave 1 //////////////////////////////////////
     @org.junit.jupiter.api.Test
@@ -57,9 +75,10 @@ class Oblig1Test {
             System.out.println("Oppgave 1: e) Feil opptelling i ombyttingsmetoden!");
             antallFeil++;
         }
-        //assertEquals(0, antallFeil, "Du har for mange feil i oppgave 1");
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 1");
     }
-    ///// Oppgave 2 //////////////////////////////////////
+
+    ///// Oppgave 2 /////////////////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave2() {
         int antallFeil = 0;
@@ -110,6 +129,7 @@ class Oblig1Test {
         }
         assertEquals(0, antallFeil, "Du har for mange feil i oppgave 2");
     }
+
     ///// Oppgave 3 //////////////////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave3() {
@@ -237,7 +257,7 @@ class Oblig1Test {
         b = new int[]{1, 3, 5, 2, 4, 6};
         boolean flere = true;
 
-       do {
+        do {
             int[] c = a.clone();
             Oblig1.delsortering(c);
 
@@ -306,7 +326,6 @@ class Oblig1Test {
 
         assertEquals(0, antallFeil, "Du har for mange feil i oppgave 4");
     }
-
 
     ///// Oppgave 5 //////////////////////////////////////
     @org.junit.jupiter.api.Test
@@ -464,133 +483,131 @@ class Oblig1Test {
         assertEquals(0, antallFeil, "Du har for mange feil i oppgave 6");
     }
 
-
+    ///// Oppgave 7 //////////////////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave7() {
+        int antallFeil = 0;
+        String s = null;
 
-            int antallFeil = 0;
-            String s = null;
+        try {
+            s = Oblig1.flett("", "");  // kaller metoden
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println
+                    ("Oppgave 7a: a) Skal ikke kaste unntak for to tomme tegnstrenger!!");
+            antallFeil++;
+        }
 
-            try {
-                s = Oblig1.flett("", "");  // kaller metoden
-            } catch (Exception e) {
-                System.out.println(e);
-                System.out.println
-                        ("Oppgave 7a: a) Skal ikke kaste unntak for to tomme tegnstrenger!!");
-                antallFeil++;
-            }
+        if (s.compareTo("") != 0) {
+            System.out.println
+                    ("Oppgave 7a: b) Svaret skal bli lik en tom streng!");
+            antallFeil++;
+        }
 
-            if (s.compareTo("") != 0) {
-                System.out.println
-                        ("Oppgave 7a: b) Svaret skal bli lik en tom streng!");
-                antallFeil++;
-            }
+        try {
+            s = Oblig1.flett("", "AB");  // kaller metoden
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println
+                    ("Oppgave 7a: c) Skal ikke kaste unntak for en tom tegnstreng!!");
+            antallFeil++;
+        }
 
-            try {
-                s = Oblig1.flett("", "AB");  // kaller metoden
-            } catch (Exception e) {
-                System.out.println(e);
-                System.out.println
-                        ("Oppgave 7a: c) Skal ikke kaste unntak for en tom tegnstreng!!");
-                antallFeil++;
-            }
+        if (s.compareTo("AB") != 0) {
+            System.out.println
+                    ("Oppgave 7a: d) Svaret skal bli lik AB");
+            antallFeil++;
+        }
 
-            if (s.compareTo("AB") != 0) {
-                System.out.println
-                        ("Oppgave 7a: d) Svaret skal bli lik AB");
-                antallFeil++;
-            }
+        try {
+            s = Oblig1.flett("AB", "");  // kaller metoden
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println
+                    ("Oppgave 7a: e) Skal ikke kaste unntak for en tom tegnstreng!!");
+            antallFeil++;
+        }
 
-            try {
-                s = Oblig1.flett("AB", "");  // kaller metoden
-            } catch (Exception e) {
-                System.out.println(e);
-                System.out.println
-                        ("Oppgave 7a: e) Skal ikke kaste unntak for en tom tegnstreng!!");
-                antallFeil++;
-            }
+        if (s.compareTo("AB") != 0) {
+            System.out.println
+                    ("Oppgave 7a: f) Svaret skal bli lik AB");
+            antallFeil++;
+        }
 
-            if (s.compareTo("AB") != 0) {
-                System.out.println
-                        ("Oppgave 7a: f) Svaret skal bli lik AB");
-                antallFeil++;
-            }
+        s = Oblig1.flett("A", "BCDEF");
 
-            s = Oblig1.flett("A", "BCDEF");
+        if (s.compareTo("ABCDEF") != 0) {
+            System.out.println
+                    ("Oppgave 7a: g) Svaret skal bli lik ABCDEF");
+            antallFeil++;
+        }
 
-            if (s.compareTo("ABCDEF") != 0) {
-                System.out.println
-                        ("Oppgave 7a: g) Svaret skal bli lik ABCDEF");
-                antallFeil++;
-            }
+        s = Oblig1.flett("ABCDE", "F");
 
-            s = Oblig1.flett("ABCDE", "F");
+        if (s.compareTo("AFBCDE") != 0) {
+            System.out.println
+                    ("Oppgave 7a: h) Svaret skal bli lik AFBCDE");
+            antallFeil++;
+        }
 
-            if (s.compareTo("AFBCDE") != 0) {
-                System.out.println
-                        ("Oppgave 7a: h) Svaret skal bli lik AFBCDE");
-                antallFeil++;
-            }
+        s = Oblig1.flett("ACEGIK", "BDFHJLMN");
 
-            s = Oblig1.flett("ACEGIK", "BDFHJLMN");
+        if (s.compareTo("ABCDEFGHIJKLMN") != 0) {
+            System.out.println
+                    ("Oppgave 7a: i) Svaret skal bli lik ABCDEFGHIJKLMN");
+            antallFeil++;
+        }
 
-            if (s.compareTo("ABCDEFGHIJKLMN") != 0) {
-                System.out.println
-                        ("Oppgave 7a: i) Svaret skal bli lik ABCDEFGHIJKLMN");
-                antallFeil++;
-            }
+        String[] a = {};
 
-            String[] a = {};
+        try {
+            s = Oblig1.flett(a);  // kaller metoden
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println
+                    ("Oppgave 7b: a) Skal ikke kaste unntak for en tom tabell!");
+            antallFeil++;
+        }
 
-            try {
-                s = Oblig1.flett(a);  // kaller metoden
-            } catch (Exception e) {
-                System.out.println(e);
-                System.out.println
-                        ("Oppgave 7b: a) Skal ikke kaste unntak for en tom tabell!");
-                antallFeil++;
-            }
+        if (s.compareTo("") != 0) {
+            System.out.println
+                    ("Oppgave 7b: b) Svaret skal bli lik en tom streng!");
+            antallFeil++;
+        }
 
-            if (s.compareTo("") != 0) {
-                System.out.println
-                        ("Oppgave 7b: b) Svaret skal bli lik en tom streng!");
-                antallFeil++;
-            }
+        try {
+            s = Oblig1.flett("", "ABC", "");  // kaller metoden
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println
+                    ("Oppgave 7b: c) Skal ikke kaste unntak for en tom streng!");
+            antallFeil++;
+        }
 
-            try {
-                s = Oblig1.flett("", "ABC", "");  // kaller metoden
-            } catch (Exception e) {
-                System.out.println(e);
-                System.out.println
-                        ("Oppgave 7b: c) Skal ikke kaste unntak for en tom streng!");
-                antallFeil++;
-            }
+        if (s.compareTo("ABC") != 0) {
+            System.out.println
+                    ("Oppgave 7b: d) Svaret skal bli lik ABC");
+            antallFeil++;
+        }
 
-            if (s.compareTo("ABC") != 0) {
-                System.out.println
-                        ("Oppgave 7b: d) Svaret skal bli lik ABC");
-                antallFeil++;
-            }
+        s = Oblig1.flett("AM ", "L", "GEDS", "ORATKRR", "", "R TRTE", "IO", "TGAUU");
 
-            s = Oblig1.flett("AM ", "L", "GEDS", "ORATKRR", "", "R TRTE", "IO", "TGAUU");
+        if (s.compareTo("ALGORITMER OG DATASTRUKTURER") != 0) {
+            System.out.println
+                    ("Oppgave 7b: e) Svaret skal bli ALGORITMER OG DATASTRUKTURER!");
+            antallFeil++;
+        }
 
-            if (s.compareTo("ALGORITMER OG DATASTRUKTURER") != 0) {
-                System.out.println
-                        ("Oppgave 7b: e) Svaret skal bli ALGORITMER OG DATASTRUKTURER!");
-                antallFeil++;
-            }
+        s = Oblig1.flett("AFK", "BGLP", "CHMQT", "DINRUW", "EJOSVXY");
 
-            s = Oblig1.flett("AFK", "BGLP", "CHMQT", "DINRUW", "EJOSVXY");
+        if (s.compareTo("ABCDEFGHIJKLMNOPQRSTUVWXY") != 0) {
+            System.out.println
+                    ("Oppgave 7b: f) Svaret skal bli ABCDEFGHIJKLMNOPQRSTUVWXY!");
+            antallFeil++;
+        }
 
-            if (s.compareTo("ABCDEFGHIJKLMNOPQRSTUVWXY") != 0) {
-                System.out.println
-                        ("Oppgave 7b: f) Svaret skal bli ABCDEFGHIJKLMNOPQRSTUVWXY!");
-                antallFeil++;
-            }
-
-            assertEquals(0, antallFeil, "Du har for mange feil i oppgave 7");
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 7");
     }
-
 
     ///// Oppgave 8 //////////////////////////////////////
     @org.junit.jupiter.api.Test
@@ -786,8 +803,6 @@ class Oblig1Test {
         assertEquals(0, antallFeil, "Du har for mange feil i oppgave 9");
     }
 
-
-
     ///// Oppgave 10 //////////////////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave10() {
@@ -921,8 +936,6 @@ class Oblig1Test {
         }
         assertEquals(0, antallFeil, "Du har for mange feil i oppgave 10");
     }
-
-
 
     ///// Hjelpemetoder /////////////////////////////
 
