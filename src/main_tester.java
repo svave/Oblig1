@@ -58,7 +58,7 @@ public class main_tester {
         int[] delsort = {6,10,9,4,1,3,8,5,2,7};
         Oblig1.delsortering(delsort);
         System.out.println("Delsortert array "+ Arrays.toString(delsort));
-/*
+
         //oppgave 5
         char[] rotering = {'A','B','C','D','E','F','G','H','I','J'};
         Oblig1.rotasjon(rotering);
@@ -66,12 +66,12 @@ public class main_tester {
         System.out.println();
 
         //oppgave 6
+        char[] rotering1 = {'A','B','C','D','E','F','G','H','I','J'};
         char[] rotering2 = {'A','B','C','D','E','F','G','H','I','J'};
-        System.out.println(Arrays.toString(rotering2));
 
-        Oblig1.rotasjon(rotering2,3);
-        System.out.println(Arrays.toString(rotering2));
+        Oblig1.rotasjon(rotering1,3);
         Oblig1.rotasjon(rotering2,-2);
+        System.out.println(Arrays.toString(rotering1));
         System.out.println(Arrays.toString(rotering2));
 
         //Oppgave 8
@@ -89,7 +89,7 @@ public class main_tester {
         //Oppgave 9
         System.out.print("\n\n////////Oppgave 9 ////////\n\n");
         System.out.println("Array med de tre minste indexene : " + Arrays.toString(Oblig1.tredjeMin(x)));
-*/
+
         String a = Oblig1.flett("ABC","DEFGH");
         String b = Oblig1.flett("IJKLMN","QPQ");
         String c = Oblig1.flett("","AB");

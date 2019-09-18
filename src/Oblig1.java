@@ -168,32 +168,27 @@ public class Oblig1 {
     }
 
     //oppgave 6
-    public static void rotasjon(char[] a, int k){
-        while(k<0){
-            if (a.length<2) { // sjekker hvis er tom eller en verdi
-                return;
-            }
-            if ((k %= a.length)<0)
-                k += a.length;
+    public static void rotasjon(char[] a, int k) {
 
-            char[] copy = Arrays.copyOfRange(a, 0, a.length-k);//lager hjelpetabell
-            for (int i=0; i<k; ++i) {
-                a[i] = a[i + a.length-k];
-            }
-            System.arraycopy(copy, 0, a, k, a.length-k); //kopieringen
+        if (a.length < 2) { // sjekker hvis er tom eller en verdi
+            return;
         }
-        if(k>=0){
-            if (a.length < 2){ // sjekker hvis er tom eller en verdi
-                return;
-            }
-            if ((k %= a.length) < 0) {
-                k += a.length;
-            }
+        if ((k %= a.length) < 0)
+            k += a.length;
+
+        if (k <= (a.length + 1) / 2) {
             char[] copy = Arrays.copyOfRange(a, a.length - k, a.length);//lager hjelpetabell
             for (int i = a.length - 1; i >= k; --i) {
                 a[i] = a[i - k];
             }
             System.arraycopy(copy, 0, a, 0, k); //kopieringen
+
+        } else {
+            char[] copy = Arrays.copyOfRange(a, 0, a.length - k);//lager hjelpetabell
+            for (int i = 0; i < k; ++i) {
+                a[i] = a[i + a.length - k];
+            }
+            System.arraycopy(copy, 0, a, k, a.length - k); //kopieringen
         }
     }
 
